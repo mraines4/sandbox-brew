@@ -19,6 +19,7 @@ const goButton = document.querySelector('[data-gobutton]');
 const searchDiv = document.querySelector('[data-search]');
 const runningDiv = document.querySelector('[data-running]');
 const resultDiv = document.querySelector('[data-result]');
+const mapDiv = document.querySelector('[data-mapall]')
 
 
 //////////////////////////////////////////////////////////
@@ -70,7 +71,12 @@ goFetch();
 //////////////////// GIVE API INFO ///////////////////////
 //////////////////////////////////////////////////////////
 
-goButton.addEventListener('click', giveApiInfo);
+goButton.addEventListener('click', runMap);
+
+function runMap () {
+    searchDiv.classList.add('hidden');
+    mapDiv.classList.remove('hidden');
+}
 
 function giveApiInfo() {
     // console.log(currentCity.value)
