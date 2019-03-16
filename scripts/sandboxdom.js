@@ -71,12 +71,7 @@ goFetch();
 //////////////////// GIVE API INFO ///////////////////////
 //////////////////////////////////////////////////////////
 
-goButton.addEventListener('click', runMap);
-
-function runMap () {
-    searchDiv.classList.add('hidden');
-    mapDiv.classList.remove('hidden');
-}
+goButton.addEventListener('click', giveApiInfo);
 
 function giveApiInfo() {
     // console.log(currentCity.value)
@@ -88,13 +83,6 @@ function giveApiInfo() {
     runningDiv.classList.remove('hidden');
 
     inputToObject(currentCity.value, currentState.value, currentRadius.value).then(function (result){
-        let map;
-        let service;
-        let infowindow;
-        initMap();
-
-
-
                     /////////////////
                     // Cheat Sheet //
                     /////////////////
@@ -102,7 +90,14 @@ function giveApiInfo() {
         // result[1] is the user distance from the brewery
         // result[2] is the brewery website
         makeBrewery(result);
+        let map;
+        let service;
+        let infoWindow;
+        let breweryName = result[0].name;
+        initMap(breweryName);
+        console.log(breweryName);
     });
+
 
     // makeBrewery(dummyYelp)
 }
@@ -114,21 +109,22 @@ function giveApiInfo() {
 //////////////////////////////////////////////////////////
 
 
-// function makeBrewery(brewInfo) {
-//     //// unhide when divs are updated!!!
-//     runningDiv.classList.add('hidden');
-//     resultDiv.classList.remove('hidden');
-//     breweryPicture.setAttribute('src', brewInfo[0].image_url);
-//     breweryName.textContent = brewInfo[0].name;
-//     breweryPhone.textContent = brewInfo[0].display_phone;
-//     breweryAddress.textContent = `${brewInfo[0].location.address1}\n\r${brewInfo[0].location.city}, ${brewInfo[0].location.state} ${brewInfo[0].location.zip_code}`;
-//     breweryAddress.setAttribute('href', `https://www.google.com/maps?saddr=My+Location&daddr=${breweryAddress.textContent}`)
-//     breweryWebsite.textContent = brewInfo[2];
-//     breweryWebsite.setAttribute('href' ,brewInfo[2].website_url);
-//     breweryReview.setAttribute('src', `./../img/${brewInfo[0].rating}pint.png`);
-//     breweryHours.textContent = closedOrNot(brewInfo[0].is_closed);
-//     breweryDistance.textContent = `${brewInfo[1]} miles away`;
-// }
+function makeBrewery(brewInfo) {
+    //// unhide when divs are updated!!!
+    runningDiv.classList.add('hidden');
+    mapDiv.classList.remove('hidden');
+    // console.log('jonathan said make brewery run')
+    // breweryPicture.setAttribute('src', brewInfo[0].image_url);
+    // breweryName.textContent = brewInfo[0].name;
+    // breweryPhone.textContent = brewInfo[0].display_phone;
+    // breweryAddress.textContent = `${brewInfo[0].location.address1}\n\r${brewInfo[0].location.city}, ${brewInfo[0].location.state} ${brewInfo[0].location.zip_code}`;
+    // breweryAddress.setAttribute('href', `https://www.google.com/maps?saddr=My+Location&daddr=${breweryAddress.textContent}`)
+    // breweryWebsite.textContent = brewInfo[2];
+    // breweryWebsite.setAttribute('href' ,brewInfo[2].website_url);
+    // breweryReview.setAttribute('src', `./../img/${brewInfo[0].rating}pint.png`);
+    // breweryHours.textContent = closedOrNot(brewInfo[0].is_closed);
+    // breweryDistance.textContent = `${brewInfo[1]} miles away`;
+}
 
 // checks truthiness of open status of brewery
 function closedOrNot(status) {

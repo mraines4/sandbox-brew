@@ -147,7 +147,7 @@ function yelpAPI(phone){
 // OPENCAGE API BEGINS //
 /////////////////////////
 function geoApi(city,state){
-  geoKey = '9940fdfbec3c42328da75e23977d75a9';
+  geoKey = '10fd1a444a7245d9aef8755338cd29af';
   const GEO_URL = `https://api.opencagedata.com/geocode/v1/json?q=${city},${state},US&key=${geoKey}`;
 
   return fetch(GEO_URL)
@@ -270,7 +270,7 @@ let map;
 let service;
 let infowindow;
 
-function initMap() {
+function initMap(breweryName) {
   let atlanta = new google.maps.LatLng(33.848555, -84.373724); // geolocate user
 
   infowindow = new google.maps.InfoWindow();
@@ -283,9 +283,10 @@ function initMap() {
   );
           
           let request = {
-              query: 'Sweetwater Brewing', // need user input
+              query: `${breweryName}`, // need user input
               fields: ['name', 'geometry'],
           };
+        //   console.log(breweryName)
           
           service = new google.maps.places.PlacesService(map);
           
