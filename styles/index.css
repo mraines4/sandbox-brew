@@ -351,3 +351,8 @@ and (min-device-width: 800px) {
         /* object-fit: cover;     */
       /* } */
 
+.mapall {
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+}
