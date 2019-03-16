@@ -82,6 +82,13 @@ function giveApiInfo() {
     runningDiv.classList.remove('hidden');
 
     inputToObject(currentCity.value, currentState.value, currentRadius.value).then(function (result){
+        let map;
+        let service;
+        let infowindow;
+        initMap();
+
+
+
                     /////////////////
                     // Cheat Sheet //
                     /////////////////
